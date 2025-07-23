@@ -18,7 +18,7 @@
   border: 1px solid;
   display: flex;
   justify-content: space-between;
-  background-image: linear-gradient(to bottom right, cyan, black);
+  background-image: linear-gradient(to bottom right, #00FF00, black);
   top: 0;
   z-index: 10;
 }
@@ -27,7 +27,7 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 8px solid rgba(25, 197, 160, 0.665);
+  border: 8px solid rgba(28, 217, 101, 0.788);
 }
 
 .logo {
@@ -133,7 +133,7 @@
   display: flex;
   align-items: center;
   border-radius: 50%;
-  background: rgba(31, 233, 216, 0.788);
+  background: rgba(28, 217, 101, 0.788);
 }
 
 p,
@@ -172,7 +172,7 @@ h2 {
 }
 
 .icon-list:hover .social-icons:hover {
-  background-image: linear-gradient(cyan, black);
+  background-image: linear-gradient(#00FF00, black);
 }
 
 .brands {
@@ -196,7 +196,7 @@ h2 {
   width: 90%;
   height: auto;
   background-color: #1e1e1e;
-  box-shadow: 0 0 10px cyan;
+  box-shadow: 0 0 10px #00FF00;
   margin: auto;
   border-radius: 20px;
 }
@@ -213,7 +213,7 @@ h2 {
   width: 8%;
   box-shadow: 0 0 10px #00fa50;
   height: 4px;
-  background-color: cyan;
+  background-color: #00FF00;
   margin: 8px auto 0;
   border-radius: 5px;
 }
@@ -223,14 +223,14 @@ h2 {
   width: 5%;
   box-shadow: 0 0 10px #00fa50;
   height: 4px;
-  background-color: cyan;
+  background-color: #00FF00;
   margin: 8px auto 0;
   border-radius: 5px;
 }
 
 .main-icon {
   font-size: 40px;
-  color: blue;
+  color: green;
   padding-bottom: 15px;
 }
 
@@ -245,7 +245,7 @@ h2 {
 }
 
 #highlight {
-  color: cyan;
+  color: #00FF00;
   font-size: 20px;
 }
 
@@ -288,7 +288,7 @@ h2 {
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 6px;
   color: white;
-  box-shadow: 0 0 10px cyan;
+  box-shadow: 0 0 10px #00FF00;
 }
 
 .link {
@@ -318,7 +318,7 @@ h2 {
 }
 
 .freelance {
-  background-color: cyan;
+  background-color: #00FF00;
   color: black;
   border-radius: 4px;
   padding: 2px;
@@ -334,7 +334,7 @@ h2 {
 .skill-subhead {
   width: 90%;
   background-color: #1e1e1e;
-  box-shadow: 0 0 10px cyan;
+  box-shadow: 0 0 10px #00FF00;
   margin: auto;
   border-radius: 20px;
 }
@@ -388,7 +388,7 @@ h2 {
 .combar,
 .teambar,
 .createbar {
-  background: cyan;
+  background: #00FF00;
 }
 
 .csharp { width: 90%; }
@@ -405,13 +405,13 @@ h2 {
   right: 0;
   top: -10px;
   text-align: center;
-  background-color: cyan;
+  background-color: #00FF00;
   color: #000;
   font-size: 12px;
   font-weight: bold;
   padding: 5px 8px;
   border-radius: 50px;
-  box-shadow: 0 0 10px cyan;
+  box-shadow: 0 0 10px #00FF00;
 }
 
 /* PROJECT SECTION */
@@ -423,7 +423,7 @@ h2 {
 .sub-pro {
   width: 90%;
   background-color: #1e1e1e;
-  box-shadow: 0 0 10px cyan;
+  box-shadow: 0 0 10px #00FF00;
   margin: auto;
 }
 
