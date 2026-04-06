@@ -4,7 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Nebu Salim — .NET Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -20,9 +22,9 @@
     --accent2: #a8e010;
     --blue: #4d9fff;
     --purple: #b57bff;
-    --mono: 'DM Mono', monospace;
-    --display: 'Syne', sans-serif;
-    --serif: 'Instrument Serif', serif;
+    --mono: 'DM Mono', 'Courier New', monospace;
+    --display: 'Syne', 'Segoe UI', Arial, sans-serif;
+    --serif: 'Instrument Serif', Georgia, serif;
   }
 
   html { scroll-behavior: smooth; }
@@ -199,7 +201,8 @@
   footer span { color: var(--accent); }
 
   /* ANIMATIONS */
-  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up { opacity: 1; transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js-ready .fade-up { opacity: 0; transform: translateY(24px); }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
   /* MOBILE */
@@ -675,6 +678,9 @@
     el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(2)'; });
     el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; });
   });
+
+  // Add js-ready so fade-up animation only applies when JS is working
+  document.body.classList.add("js-ready");
 
   // Scroll fade-in
   const observer = new IntersectionObserver(entries => {
