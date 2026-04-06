@@ -234,7 +234,7 @@
     <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="mailto:salimnebu@gmail.com" class="nav-cta">Hire Me</a>
+  <a href="/cdn-cgi/l/email-protection#4635272a2f2b2823243306212b272f2a6825292b" class="nav-cta">Hire Me</a>
 </nav>
 
 <!-- HERO -->
@@ -252,7 +252,7 @@
     </p>
     <div class="hero-actions">
       <a href="#projects" class="btn-primary">View Projects →</a>
-      <a href="mailto:salimnebu@gmail.com" class="btn-outline">Get In Touch</a>
+      <a href="/cdn-cgi/l/email-protection#acdfcdc0c5c1c2c9ced9eccbc1cdc5c082cfc3c1" class="btn-outline">Get In Touch</a>
     </div>
   </div>
 
@@ -268,14 +268,14 @@
         <span class="tech-pill">ASP.NET Core</span>
         <span class="tech-pill">Web API</span>
         <span class="tech-pill">SQL Server</span>
-        <span class="tech-pill">Angular</span>
         <span class="tech-pill">Entity Framework</span>
-        <span class="tech-pill">TypeScript</span>
-        <span class="tech-pill">ADO.NET</span>
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">OpenAI API</span>
+        <span class="tech-pill">YOLOv5</span>
       </div>
       <div class="stat-row">
         <div class="stat-item">
-          <span class="stat-num">5+</span>
+          <span class="stat-num">7+</span>
           <span class="stat-desc">Projects Built</span>
         </div>
         <div class="stat-item">
@@ -383,25 +383,28 @@
   </div>
   <div class="projects-grid">
 
-    <!-- Featured: GymFlex -->
+    <!-- Featured: Resume Analyzer (LATEST) -->
     <div class="project-card featured fade-up">
       <div>
-        <div class="proj-num">Featured Project — 01</div>
-        <h3 class="proj-title">GymFlex</h3>
+        <div class="proj-num">Latest Project — 01</div>
+        <h3 class="proj-title">Resume Analyzer</h3>
         <p class="proj-desc">
-          A full-featured Fitness Management System with personalized workout plans,
-          diet tracking, BMI calculation, progress tracking, and scheduling. Built with
-          role-based access control for admins and members.
+          An AI-powered resume analysis platform built with a clean-architecture .NET Web API backend.
+          Upload a PDF or DOCX resume, get instant ATS scoring, skill extraction, improvement suggestions,
+          and job-description match scoring — all powered by the Groq/OpenAI API with JWT-secured endpoints.
         </p>
         <div class="proj-tags">
-          <span class="proj-tag">ASP.NET Core MVC</span>
+          <span class="proj-tag">ASP.NET Core Web API</span>
+          <span class="proj-tag">Clean Architecture</span>
+          <span class="proj-tag">Entity Framework Core</span>
           <span class="proj-tag">SQL Server</span>
-          <span class="proj-tag">Entity Framework</span>
-          <span class="proj-tag">Authentication</span>
-          <span class="proj-tag">Role-Based Access</span>
+          <span class="proj-tag">JWT Auth</span>
+          <span class="proj-tag">OpenAI / Groq API</span>
+          <span class="proj-tag">Swagger</span>
+          <span class="proj-tag">Blazor Frontend</span>
         </div>
         <div class="proj-links">
-          <a href="https://github.com/nebusalim01" target="_blank" class="proj-link">↗ GitHub</a>
+          <a href="https://github.com/nebusalim01/ResumeAnalyzer.git" target="_blank" class="proj-link">↗ GitHub</a>
         </div>
       </div>
       <div class="proj-preview">
@@ -409,39 +412,65 @@
           <div class="dot d-r"></div><div class="dot d-y"></div><div class="dot d-g"></div>
         </div>
         <div class="proj-preview-content" style="display:flex;flex-direction:column;gap:8px;justify-content:center;">
-          <div style="display:flex;gap:8px;margin-bottom:4px;">
-            <div style="background:rgba(200,241,53,0.15);border-radius:4px;padding:4px 10px;font-family:var(--mono);font-size:0.6rem;color:var(--accent);">Dashboard</div>
-            <div style="background:var(--bg2);border-radius:4px;padding:4px 10px;font-family:var(--mono);font-size:0.6rem;color:var(--muted);">Workouts</div>
-            <div style="background:var(--bg2);border-radius:4px;padding:4px 10px;font-family:var(--mono);font-size:0.6rem;color:var(--muted);">Diet</div>
+          <!-- ATS Score card -->
+          <div style="display:flex;gap:8px;margin-bottom:2px;">
+            <div style="background:rgba(200,241,53,0.12);border:1px solid rgba(200,241,53,0.25);border-radius:4px;padding:4px 10px;font-family:var(--mono);font-size:0.58rem;color:var(--accent);">ATS Score</div>
+            <div style="background:var(--bg2);border-radius:4px;padding:4px 10px;font-family:var(--mono);font-size:0.58rem;color:var(--muted);">Job Match</div>
+            <div style="background:var(--bg2);border-radius:4px;padding:4px 10px;font-family:var(--mono);font-size:0.58rem;color:var(--muted);">Suggestions</div>
           </div>
-          <!-- BMI card -->
-          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:0.6rem 0.75rem;font-family:var(--mono);">
-            <div style="font-size:0.6rem;color:var(--muted);margin-bottom:4px;">BMI Index</div>
-            <div style="font-size:1.1rem;font-weight:800;color:var(--accent);">22.4</div>
-            <div style="height:4px;background:var(--border);border-radius:2px;margin-top:6px;">
-              <div style="height:100%;width:55%;background:var(--accent);border-radius:2px;"></div>
+          <div style="display:flex;gap:8px;">
+            <div style="flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:0.6rem 0.75rem;font-family:var(--mono);">
+              <div style="font-size:0.55rem;color:var(--muted);margin-bottom:4px;">ATS Score</div>
+              <div style="font-size:1.3rem;font-weight:800;color:var(--accent);">87<span style="font-size:0.6rem;opacity:0.6">/100</span></div>
+              <div style="height:3px;background:var(--border);border-radius:2px;margin-top:6px;">
+                <div style="height:100%;width:87%;background:var(--accent);border-radius:2px;"></div>
+              </div>
+            </div>
+            <div style="flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:0.6rem 0.75rem;font-family:var(--mono);">
+              <div style="font-size:0.55rem;color:var(--muted);margin-bottom:4px;">Job Match</div>
+              <div style="font-size:1.3rem;font-weight:800;color:#4d9fff;">74<span style="font-size:0.6rem;opacity:0.6">%</span></div>
+              <div style="height:3px;background:var(--border);border-radius:2px;margin-top:6px;">
+                <div style="height:100%;width:74%;background:#4d9fff;border-radius:2px;"></div>
+              </div>
             </div>
           </div>
-          <!-- progress bars -->
-          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:0.6rem 0.75rem;">
-            <div style="font-size:0.55rem;color:var(--muted);margin-bottom:6px;font-family:var(--mono);">Weekly Progress</div>
-            <div style="display:flex;align-items:flex-end;gap:5px;height:40px;">
-              <div style="flex:1;background:rgba(200,241,53,0.2);border-radius:2px 2px 0 0;height:60%"></div>
-              <div style="flex:1;background:rgba(200,241,53,0.35);border-radius:2px 2px 0 0;height:80%"></div>
-              <div style="flex:1;background:rgba(200,241,53,0.2);border-radius:2px 2px 0 0;height:50%"></div>
-              <div style="flex:1;background:rgba(200,241,53,0.5);border-radius:2px 2px 0 0;height:100%"></div>
-              <div style="flex:1;background:rgba(200,241,53,0.3);border-radius:2px 2px 0 0;height:70%"></div>
-              <div style="flex:1;background:rgba(200,241,53,0.15);border-radius:2px 2px 0 0;height:40%"></div>
-              <div style="flex:1;background:rgba(200,241,53,0.4);border-radius:2px 2px 0 0;height:90%"></div>
+          <!-- Skills found -->
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:0.55rem 0.75rem;">
+            <div style="font-size:0.55rem;color:var(--muted);margin-bottom:5px;font-family:var(--mono);">Skills extracted</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;">
+              <span style="background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:2px 6px;font-family:var(--mono);font-size:0.55rem;color:var(--muted);">C#</span>
+              <span style="background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:2px 6px;font-family:var(--mono);font-size:0.55rem;color:var(--muted);">ASP.NET</span>
+              <span style="background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:2px 6px;font-family:var(--mono);font-size:0.55rem;color:var(--muted);">SQL</span>
+              <span style="background:rgba(200,241,53,0.08);border:1px solid rgba(200,241,53,0.2);border-radius:3px;padding:2px 6px;font-family:var(--mono);font-size:0.55rem;color:var(--accent);">+5 more</span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- HireHub -->
+    <!-- GymFlex -->
     <div class="project-card fade-up">
       <div class="proj-num">Project — 02</div>
+      <h3 class="proj-title">GymFlex</h3>
+      <p class="proj-desc">
+        A full-featured Fitness Management System with personalized workout plans,
+        diet tracking, BMI calculation, progress tracking, and scheduling. Built with
+        role-based access control for admins and members.
+      </p>
+      <div class="proj-tags">
+        <span class="proj-tag">ASP.NET Core MVC</span>
+        <span class="proj-tag">SQL Server</span>
+        <span class="proj-tag">Entity Framework</span>
+        <span class="proj-tag">Role-Based Access</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/nebusalim01" target="_blank" class="proj-link">↗ GitHub</a>
+      </div>
+    </div>
+
+    <!-- HireHub -->
+    <div class="project-card fade-up">
+      <div class="proj-num">Project — 03</div>
       <h3 class="proj-title">HireHub</h3>
       <p class="proj-desc">
         A job portal connecting employers and candidates. Features job posting,
@@ -461,7 +490,7 @@
 
     <!-- SmartBuy -->
     <div class="project-card fade-up">
-      <div class="proj-num">Project — 03</div>
+      <div class="proj-num">Project — 04</div>
       <h3 class="proj-title">SmartBuy</h3>
       <p class="proj-desc">
         A full e-commerce web app with product catalog, shopping cart, order
@@ -476,6 +505,59 @@
       </div>
       <div class="proj-links">
         <a href="https://github.com/nebusalim01" target="_blank" class="proj-link">↗ GitHub</a>
+      </div>
+    </div>
+
+    <!-- Signet (OLDEST / Early Project) -->
+    <div class="project-card fade-up" style="grid-column: 1 / -1;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+        <div>
+          <div class="proj-num">Early Project — 05 · Final Year Project</div>
+          <h3 class="proj-title">Signet App</h3>
+          <p class="proj-desc">
+            An assistive desktop application that translates hand gestures into text and voice in real time,
+            built to help individuals with speech or hearing impairments communicate more freely.
+            Uses a custom-trained YOLOv5 model for gesture detection, with speech-to-text, English-to-Malayalam
+            translation, and ASL recognition — all wrapped in a clean PyQt5 GUI.
+          </p>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span>
+            <span class="proj-tag">YOLOv5</span>
+            <span class="proj-tag">OpenCV</span>
+            <span class="proj-tag">PyQt5</span>
+            <span class="proj-tag">SpeechRecognition</span>
+            <span class="proj-tag">gTTS / pyttsx3</span>
+            <span class="proj-tag">ML / Computer Vision</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/nebusalim01/Signet-App.git" target="_blank" class="proj-link">↗ GitHub</a>
+          </div>
+        </div>
+        <!-- Signet visual -->
+        <div class="proj-preview" style="aspect-ratio:16/9;">
+          <div class="proj-preview-bar">
+            <div class="dot d-r"></div><div class="dot d-y"></div><div class="dot d-g"></div>
+            <span style="font-family:var(--mono);font-size:0.58rem;color:var(--muted);margin-left:8px;">SIGNET: Sign Language Translator</span>
+          </div>
+          <div style="margin-top:28px;height:calc(100% - 28px);display:flex;flex-direction:column;gap:8px;padding:0.75rem;justify-content:center;">
+            <!-- Camera feed placeholder -->
+            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <div style="width:60px;height:60px;border:2px solid rgba(200,241,53,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                  <div style="width:36px;height:36px;border:2px solid rgba(200,241,53,0.4);border-radius:50%;"></div>
+                </div>
+              </div>
+              <div style="position:absolute;bottom:6px;left:6px;font-family:var(--mono);font-size:0.55rem;color:var(--accent);background:rgba(0,0,0,0.5);padding:2px 6px;border-radius:3px;">● LIVE</div>
+            </div>
+            <!-- Buttons row -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+              <div style="background:rgba(76,175,80,0.12);border:1px solid rgba(76,175,80,0.3);border-radius:5px;padding:5px 8px;font-family:var(--mono);font-size:0.58rem;color:#4CAF50;text-align:center;">Gesture Recognition</div>
+              <div style="background:rgba(33,150,243,0.12);border:1px solid rgba(33,150,243,0.3);border-radius:5px;padding:5px 8px;font-family:var(--mono);font-size:0.58rem;color:#2196F3;text-align:center;">Speech Recognition</div>
+              <div style="background:rgba(103,58,183,0.12);border:1px solid rgba(103,58,183,0.3);border-radius:5px;padding:5px 8px;font-family:var(--mono);font-size:0.58rem;color:#b57bff;text-align:center;">Language Translation</div>
+              <div style="background:rgba(200,241,53,0.08);border:1px solid rgba(200,241,53,0.2);border-radius:5px;padding:5px 8px;font-family:var(--mono);font-size:0.58rem;color:var(--accent);text-align:center;">ASL Recognition</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -562,8 +644,8 @@
       I'm actively looking for entry-level .NET Developer roles. Whether you have
       an opportunity, a project, or just want to connect — I'd love to hear from you.
     </p>
-    <a href="mailto:salimnebu@gmail.com" class="contact-email">
-      salimnebu@gmail.com ↗
+    <a href="/cdn-cgi/l/email-protection#186b79747175767d7a6d587f75797174367b7775" class="contact-email">
+      <span class="__cf_email__" data-cfemail="493a28252024272c2b3c092e24282025672a2624">[email&#160;protected]</span> ↗
     </a>
     <div class="social-links">
       <a href="https://linkedin.com/in/nebusalim" target="_blank" class="social-link">↗ LinkedIn</a>
@@ -579,7 +661,7 @@
   <p>Built with care · <span>Hosted free on GitHub Pages</span></p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursor-ring');
@@ -596,14 +678,3 @@
 
   // Scroll fade-in
   const observer = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
