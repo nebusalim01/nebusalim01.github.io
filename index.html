@@ -1,181 +1,609 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nebu Salim | Portfolio</title>
-  <link rel="stylesheet" href="./style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nebu Salim — .NET Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0b;
+    --bg2: #111114;
+    --bg3: #18181c;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0ede8;
+    --muted: #8a8882;
+    --accent: #c8f135;
+    --accent2: #a8e010;
+    --blue: #4d9fff;
+    --purple: #b57bff;
+    --mono: 'DM Mono', monospace;
+    --display: 'Syne', sans-serif;
+    --serif: 'Instrument Serif', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--display);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* CURSOR */
+  .cursor {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid rgba(200,241,53,0.35);
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: left 0.12s ease, top 0.12s ease;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(10,10,11,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.05em; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; color: var(--bg); background: var(--accent); padding: 0.5rem 1.25rem; border-radius: 2px; text-decoration: none; text-transform: uppercase; transition: opacity 0.2s; }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    padding: 8rem 3rem 5rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 4rem;
+    max-width: 1400px; margin: 0 auto;
+  }
+  .hero-eyebrow { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-eyebrow::before { content:''; display:inline-block; width:2rem; height:1px; background:var(--accent); }
+  .hero-name { font-size: clamp(3rem, 5.5vw, 5.5rem); font-weight: 800; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+  .hero-name em { font-family: var(--serif); font-style: italic; color: var(--accent); font-weight: 400; }
+  .hero-desc { font-family: var(--mono); font-size: 0.88rem; color: var(--muted); max-width: 420px; line-height: 1.85; margin-bottom: 2.5rem; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: var(--bg); font-family: var(--mono); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 0.85rem 1.75rem; border-radius: 2px; transition: opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border2); color: var(--muted); font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 0.85rem 1.75rem; border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
+  .btn-outline:hover { border-color: var(--text); color: var(--text); }
+
+  /* Hero Right */
+  .hero-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; position: relative; overflow: hidden; }
+  .hero-card::before { content:''; position:absolute; top:-60px; right:-60px; width:220px; height:220px; background:radial-gradient(circle, rgba(200,241,53,0.1) 0%, transparent 70%); pointer-events:none; }
+  .status-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(200,241,53,0.08); border: 1px solid rgba(200,241,53,0.2); border-radius: 100px; padding: 0.35rem 0.85rem; font-family: var(--mono); font-size: 0.72rem; color: var(--accent); margin-bottom: 1.5rem; }
+  .status-dot { width:6px; height:6px; background:var(--accent); border-radius:50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .stack-label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .tech-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .tech-pill { font-family: var(--mono); font-size: 0.72rem; padding: 0.3rem 0.7rem; border-radius: 4px; border: 1px solid var(--border); background: var(--bg3); color: var(--muted); }
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+  .stat-item { text-align: center; }
+  .stat-num { font-size: 1.75rem; font-weight: 800; color: var(--text); display: block; line-height: 1; margin-bottom: 0.25rem; }
+  .stat-desc { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* Floating code */
+  .code-float { position: absolute; bottom: -1.5rem; left: -1.5rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 0.85rem 1rem; font-family: var(--mono); font-size: 0.7rem; line-height: 1.7; min-width: 240px; z-index: 2; }
+  .cm { color: var(--muted); } .ck { color: var(--purple); } .cs { color: var(--accent); } .cf { color: var(--blue); }
+
+  /* SECTIONS */
+  section { max-width: 1400px; margin: 0 auto; padding: 6rem 3rem; }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3.5rem; }
+  .section-num { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; }
+  .section-title { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; letter-spacing: -0.02em; }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* ABOUT */
+  #about { border-top: 1px solid var(--border); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .about-text p { font-family: var(--mono); font-size: 0.88rem; color: var(--muted); line-height: 1.9; margin-bottom: 1.25rem; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .skills-group { margin-bottom: 2rem; }
+  .skills-cat { font-family: var(--mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag { font-family: var(--mono); font-size: 0.75rem; padding: 0.35rem 0.85rem; background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; color: var(--text); transition: border-color 0.2s, color 0.2s; cursor: default; }
+  .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* PROJECTS */
+  #projects { border-top: 1px solid var(--border); }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .project-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; display: block; text-decoration: none; color: inherit; }
+  .project-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+  .project-card::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at 80% 20%, rgba(200,241,53,0.04) 0%, transparent 60%); pointer-events:none; opacity:0; transition: opacity 0.3s; }
+  .project-card:hover::after { opacity:1; }
+  .project-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .proj-num { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.12em; margin-bottom: 1.25rem; }
+  .proj-title { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+  .proj-desc { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.25rem; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+  .proj-tag { font-family: var(--mono); font-size: 0.65rem; padding: 0.25rem 0.6rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 3px; color: var(--muted); }
+  .proj-links { display: flex; gap: 1rem; }
+  .proj-link { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 0.35rem; transition: opacity 0.2s; }
+  .proj-link:hover { opacity: 0.7; }
+  .proj-link.sec { color: var(--muted); }
+  .proj-link.sec:hover { color: var(--text); }
+
+  /* Project preview */
+  .proj-preview { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .proj-preview-bar { position: absolute; top: 0; left: 0; right: 0; height: 28px; background: var(--bg2); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 5px; padding: 0 0.75rem; }
+  .dot { width:8px; height:8px; border-radius:50%; }
+  .d-r{background:#ff5f57;} .d-y{background:#febc2e;} .d-g{background:#28c840;}
+  .proj-preview-content { margin-top: 28px; width: 100%; height: calc(100% - 28px); padding: 1rem; }
+
+  /* CERTIFICATIONS */
+  #certifications { border-top: 1px solid var(--border); }
+  .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .cert-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; transition: border-color 0.2s; }
+  .cert-card:hover { border-color: rgba(200,241,53,0.3); }
+  .cert-icon { width: 36px; height: 36px; background: rgba(200,241,53,0.08); border: 1px solid rgba(200,241,53,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .cert-name { font-size: 0.9rem; font-weight: 700; }
+  .cert-issuer { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); }
+  .cert-level { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* EXPERIENCE */
+  #experience { border-top: 1px solid var(--border); }
+  .timeline { position: relative; }
+  .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:1px; background:var(--border); }
+  .timeline-item { padding-left: 2.5rem; padding-bottom: 3rem; position: relative; }
+  .timeline-item::before { content:''; position:absolute; left:-4px; top:0.4rem; width:9px; height:9px; background:var(--accent); border-radius:50%; border:2px solid var(--bg); }
+  .timeline-meta { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .timeline-role { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .timeline-company { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); margin-bottom: 1rem; }
+  .timeline-bullets { list-style: none; padding: 0; }
+  .timeline-bullets li { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); line-height: 1.8; padding-left: 1rem; position: relative; max-width: 640px; margin-bottom: 0.4rem; }
+  .timeline-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+
+  /* EDUCATION */
+  #education { border-top: 1px solid var(--border); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .edu-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.75rem; transition: border-color 0.2s; }
+  .edu-card:hover { border-color: var(--border2); }
+  .edu-year { font-family: var(--mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .edu-degree { font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .edu-college { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+
+  /* CONTACT */
+  #contact { border-top: 1px solid var(--border); text-align: center; }
+  .contact-inner { max-width: 640px; margin: 0 auto; }
+  .contact-big { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 1.5rem; }
+  .contact-big em { font-family: var(--serif); font-style: italic; color: var(--accent); font-weight: 400; }
+  .contact-sub { font-family: var(--mono); font-size: 0.88rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+  .contact-email { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 1rem; color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(200,241,53,0.3); padding-bottom: 2px; margin-bottom: 2.5rem; transition: border-color 0.2s; }
+  .contact-email:hover { border-color: var(--accent); }
+  .social-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+  .social-link { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .social-link:hover { color: var(--text); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; }
+  footer p { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); }
+  footer span { color: var(--accent); }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 3rem; }
+    .code-float { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: 1; display: block; }
+    .proj-preview { display: none; }
+    .cert-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
 </head>
-
 <body>
-  <div class="wrapper">
-    <!-- NAVBAR -->
-    <nav class="nav-bar">
-      <div class="logo"><img src="./images/profile.jpg" class="img" /></div>
-      <input type="checkbox" id="check" />
-      <label for="check" class="checkbtn">
-        <i class="fa-solid fa-bars open-icon"></i>
-        <span class="close-icon">&times;</span>
-      </label>
-      <div class="nav-items">
-        <a class="items" href="#background">Home</a>
-        <a class="items" href="#about-section">About</a>
-        <a class="items" href="#skills">Skills</a>
-        <a class="items" href="#project">Projects</a>
-        <a class="items" href="#background">Contacts</a>
-      </div>
-    </nav>
 
-    <!-- HERO -->
-    <div id="background">
-      <div class="outlier">
-        <div class="profile-card">
-          <div class="profile-img">
-            <div class="image-div">
-              <img id="image-card" src="./images/profile.jpg" alt="Nebu" />
-            </div>
-          </div>
-          <h2>Nebu Salim</h2>
-          <p>Aspiring Full Stack Developer</p>
-          <div class="icon-list">
-            <div class="social-icons">
-              <a href="mailto:salimnebu@gmail.com" target="_blank"><i class="fa-brands fa-google brands"></i></a>
-            </div>
-            <div class="social-icons">
-              <a href="https://wa.me/919497676828" target="_blank"><i class="fa-brands fa-whatsapp brands"></i></a>
-            </div>
-            <div class="social-icons">
-              <a href="https://www.instagram.com/nebuuh_/profilecard/?igsh=MWoyOGlpb3lrZThheg=="><i class="fa-brands fa-instagram brands"></i></a>
-            </div>
-            <div class="social-icons">
-              <a href="https://www.linkedin.com/in/nebusalim" target="_blank"><i class="fa-brands fa-linkedin brands"></i></a>
-            </div>
-            <div class="social-icons">
-              <a href="https://github.com/nebusalim01" target="_blank"><i class="fa-brands fa-github brands"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">// nebusalim.dev</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:salimnebu@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:1400px;margin:0 auto;">
+<section id="hero">
+  <div>
+    <div class="hero-eyebrow">.NET Developer · Kerala, India</div>
+    <h1 class="hero-name">
+      Nebu<br/><em>Salim</em>
+    </h1>
+    <p class="hero-desc">
+      B.Tech IT graduate crafting robust full-stack web applications with
+      ASP.NET Core, Web API, and SQL Server. 5+ projects built. Ready to ship
+      production-grade .NET solutions from day one.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="mailto:salimnebu@gmail.com" class="btn-outline">Get In Touch</a>
     </div>
-
-    <!-- ABOUT -->
-    <div id="about-section">
-      <div class="sub-about">
-        <div class="subhead">
-          <i class="fa-solid fa-circle-info main-icon"></i>
-          <h2 class="pseudo">About</h2>
-          <div class="underline"></div>
-        </div>
-        <p class="sentance">
-          <span id="highlight">I'm Nebu Salim</span>, Motivated and detail-oriented IT graduate seeking a DotNet Developer position where I can apply my skills in C, ASP.NET, OOP, C#/C++/Java, and database programming. Eager to contribute to full-stack development tasks, follow SDLC practices, and support the software development team with strong problem-solving and communication skills.
-        </p>
-
-        <div class="boxes">
-          <div data-aos="fade-up-right" class="personal-details grid">
-            <div class="details"><strong class="key">Phone:</strong><span class="key">+91-9497676828</span></div>
-            <div class="details"><strong class="key">Email:</strong><span class="key">salimnebu@gmail.com</span></div>
-            <div class="details"><strong class="key">Location:</strong><span class="key">Alappuzha, Kerala</span></div>
-            <div class="details"><strong class="key">Job Status:</strong><span class="freelance key">Fresher</span></div>
-          </div>
-
-          <div data-aos="fade-up-left" class="my-intrests grid">
-            <h3>My Interests</h3>
-            <div class="right-box">
-              <div class="logo-intrest"><i class="fa-solid fa-laptop-code"></i></div>
-              <div class="logo-intrest"><i class="fa-solid fa-book"></i></div>
-              <div class="logo-intrest"><i class="fa-solid fa-gamepad"></i></div>
-              <div class="logo-intrest"><i class="fa-solid fa-headphones"></i></div>
-            </div>
-          </div>
-
-          <div data-aos="fade-up-right" class="download grid">
-            <a class="link" href="./assets/Nebu(Resume).pdf" target="_blank">Download CV</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SKILLS -->
-    <div id="skills">
-      <div class="skill-subhead">
-        <div class="subhead">
-          <i class="fa-solid fa-lightbulb main-icon"></i>
-          <h2 class="pseudo">Skills</h2>
-          <div class="underline"></div>
-        </div>
-        <div id="skill-set">
-          <div class="tech-skill grid2">
-            <h2>Technical Skills</h2>
-            <div class="each-skill"><span class="value1">C#</span><div class="basebar"><div class="inner-bar csharp"><div class="circle">90</div></div></div></div>
-            <div class="each-skill"><span class="value1">ASP.NET / MVC</span><div class="basebar"><div class="inner-bar dotnet"><div class="circle">85</div></div></div></div>
-            <div class="each-skill"><span class="value1">HTML/CSS/JS</span><div class="basebar"><div class="inner-bar html"><div class="circle">90</div></div></div></div>
-            <div class="each-skill"><span class="value1">Angular</span><div class="basebar"><div class="inner-bar angular"><div class="circle">85</div></div></div></div>
-            <div class="each-skill"><span class="value1">Python</span><div class="basebar"><div class="inner-bar python"><div class="circle">90</div></div></div></div>
-          </div>
-          <div class="prof-skill grid2">
-            <h2>Professional Skills</h2>
-            <div class="each-skill"><span class="value1">Communication</span><div class="basebar"><div class="inner-bar combar"><div class="circle">85</div></div></div></div>
-            <div class="each-skill"><span class="value1">Team Work</span><div class="basebar"><div class="inner-bar teambar"><div class="circle">90</div></div></div></div>
-            <div class="each-skill"><span class="value1">Creativity</span><div class="basebar"><div class="inner-bar createbar"><div class="circle">85</div></div></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJECTS -->
-    <div id="project">
-      <div class="sub-pro">
-        <div class="subhead">
-          <i class="fa-solid fa-list-check main-icon"></i>
-          <h2 class="pseudo">Projects</h2>
-          <div class="underline"></div>
-        </div>
-        <div class="grid3">
-          <div class="pro1">
-            <div data-aos="fade-right" class="section1">
-              <img class="img-prpo" src="./images/signet.png" alt="Signet App" />
-              <p class="para2"><span id="highlight">SIGNET</span> – Real-time gesture and speech translation tool using Python, OpenCV, MediaPipe, and Google Translate API. Designed to help hearing/speech impaired users.</p>
-            </div>
-          </div>
-          <div class="pro1">
-            <div data-aos="fade-right" class="section1 sec2">
-              <img class="img-prpo" src="./images/hostelmate.png" alt="Hostel Mate" />
-              <p class="para2"><span id="highlight">Hostel Mate</span> – A hostel management system with registration, room allocation, mess tracking, fee management and complaint logging features.</p>
-            </div>
-          </div>
-          <div class="pro1">
-            <div data-aos="fade-right" class="section1 sec2">
-              <img class="img-prpo" src="./images/project3.jpeg" alt="YouTube Comment Analyzer" />
-              <p class="para2"><span id="highlight">YouTube Comment Analyzer</span> – A sentiment analysis tool using Python and NLP to classify YouTube comments as positive, negative, or neutral.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="foot">
-        <p id="copyright">&copy; 2025 Portfolio Website — All rights reserved to Nebu Salim</p>
-        <div class="icon upArrow">
-          <a href="#"><i class="fa-solid fa-angle-up main-icon last"></i></a>
-        </div>
-      </div>
-    </footer>
   </div>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
-</body>
+  <div style="position:relative;">
+    <div class="hero-card">
+      <div class="status-badge">
+        <div class="status-dot"></div>
+        Open to opportunities
+      </div>
+      <div class="stack-label">Core Stack</div>
+      <div class="tech-grid">
+        <span class="tech-pill">C#</span>
+        <span class="tech-pill">ASP.NET Core</span>
+        <span class="tech-pill">Web API</span>
+        <span class="tech-pill">SQL Server</span>
+        <span class="tech-pill">Angular</span>
+        <span class="tech-pill">Entity Framework</span>
+        <span class="tech-pill">TypeScript</span>
+        <span class="tech-pill">ADO.NET</span>
+      </div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <span class="stat-num">5+</span>
+          <span class="stat-desc">Projects Built</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">3</span>
+          <span class="stat-desc">Certifications</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">.NET</span>
+          <span class="stat-desc">Specialist</span>
+        </div>
+      </div>
+    </div>
 
+    <div class="code-float">
+      <span class="ck">var</span> <span class="cf">developer</span> <span class="cm">=</span> <span class="ck">new</span> {<br/>
+      &nbsp;&nbsp;<span class="cs">Name</span> <span class="cm">=</span> <span class="cf">"Nebu Salim"</span>,<br/>
+      &nbsp;&nbsp;<span class="cs">Stack</span> <span class="cm">=</span> <span class="cf">"ASP.NET Core"</span>,<br/>
+      &nbsp;&nbsp;<span class="cs">Status</span> <span class="cm">=</span> <span class="cf">"Ready to ship"</span><br/>
+      };
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-up">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About Me</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <p>
+        I'm a <strong>B.Tech Information Technology graduate</strong> from Government Engineering College Idukki,
+        with a strong foundation in full-stack .NET development. I've built 5+ real-world applications during
+        my internship at Luminar Technolab, Kochi.
+      </p>
+      <p>
+        My expertise lies in <strong>ASP.NET Core MVC, Web API, and SQL Server</strong> — building everything
+        from RESTful backends to responsive frontends with Angular. I'm passionate about writing clean,
+        maintainable code and designing efficient database schemas.
+      </p>
+      <p>
+        I enjoy solving real problems: whether it's <strong>optimizing SQL stored procedures</strong>,
+        implementing role-based authentication, or architecting scalable APIs. I'm ready to contribute
+        from day one in any .NET team.
+      </p>
+    </div>
+    <div class="fade-up">
+      <div class="skills-group">
+        <div class="skills-cat">Languages</div>
+        <div class="skills-list">
+          <span class="skill-tag">C#</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <div class="skills-cat">Technologies</div>
+        <div class="skills-list">
+          <span class="skill-tag">ASP.NET Core</span>
+          <span class="skill-tag">ASP.NET MVC</span>
+          <span class="skill-tag">Web API</span>
+          <span class="skill-tag">Angular</span>
+          <span class="skill-tag">Entity Framework</span>
+          <span class="skill-tag">ADO.NET</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <div class="skills-cat">Database & Tools</div>
+        <div class="skills-list">
+          <span class="skill-tag">SQL Server</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">Visual Studio</span>
+          <span class="skill-tag">Git & GitHub</span>
+          <span class="skill-tag">Postman</span>
+          <span class="skill-tag">Swagger</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <div class="skills-cat">Core Concepts</div>
+        <div class="skills-list">
+          <span class="skill-tag">OOP</span>
+          <span class="skill-tag">MVC Pattern</span>
+          <span class="skill-tag">SDLC</span>
+          <span class="skill-tag">Authentication</span>
+          <span class="skill-tag">Authorization</span>
+          <span class="skill-tag">REST</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-up">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <!-- Featured: GymFlex -->
+    <div class="project-card featured fade-up">
+      <div>
+        <div class="proj-num">Featured Project — 01</div>
+        <h3 class="proj-title">GymFlex</h3>
+        <p class="proj-desc">
+          A full-featured Fitness Management System with personalized workout plans,
+          diet tracking, BMI calculation, progress tracking, and scheduling. Built with
+          role-based access control for admins and members.
+        </p>
+        <div class="proj-tags">
+          <span class="proj-tag">ASP.NET Core MVC</span>
+          <span class="proj-tag">SQL Server</span>
+          <span class="proj-tag">Entity Framework</span>
+          <span class="proj-tag">Authentication</span>
+          <span class="proj-tag">Role-Based Access</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/nebusalim01" target="_blank" class="proj-link">↗ GitHub</a>
+        </div>
+      </div>
+      <div class="proj-preview">
+        <div class="proj-preview-bar">
+          <div class="dot d-r"></div><div class="dot d-y"></div><div class="dot d-g"></div>
+        </div>
+        <div class="proj-preview-content" style="display:flex;flex-direction:column;gap:8px;justify-content:center;">
+          <div style="display:flex;gap:8px;margin-bottom:4px;">
+            <div style="background:rgba(200,241,53,0.15);border-radius:4px;padding:4px 10px;font-family:var(--mono);font-size:0.6rem;color:var(--accent);">Dashboard</div>
+            <div style="background:var(--bg2);border-radius:4px;padding:4px 10px;font-family:var(--mono);font-size:0.6rem;color:var(--muted);">Workouts</div>
+            <div style="background:var(--bg2);border-radius:4px;padding:4px 10px;font-family:var(--mono);font-size:0.6rem;color:var(--muted);">Diet</div>
+          </div>
+          <!-- BMI card -->
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:0.6rem 0.75rem;font-family:var(--mono);">
+            <div style="font-size:0.6rem;color:var(--muted);margin-bottom:4px;">BMI Index</div>
+            <div style="font-size:1.1rem;font-weight:800;color:var(--accent);">22.4</div>
+            <div style="height:4px;background:var(--border);border-radius:2px;margin-top:6px;">
+              <div style="height:100%;width:55%;background:var(--accent);border-radius:2px;"></div>
+            </div>
+          </div>
+          <!-- progress bars -->
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:0.6rem 0.75rem;">
+            <div style="font-size:0.55rem;color:var(--muted);margin-bottom:6px;font-family:var(--mono);">Weekly Progress</div>
+            <div style="display:flex;align-items:flex-end;gap:5px;height:40px;">
+              <div style="flex:1;background:rgba(200,241,53,0.2);border-radius:2px 2px 0 0;height:60%"></div>
+              <div style="flex:1;background:rgba(200,241,53,0.35);border-radius:2px 2px 0 0;height:80%"></div>
+              <div style="flex:1;background:rgba(200,241,53,0.2);border-radius:2px 2px 0 0;height:50%"></div>
+              <div style="flex:1;background:rgba(200,241,53,0.5);border-radius:2px 2px 0 0;height:100%"></div>
+              <div style="flex:1;background:rgba(200,241,53,0.3);border-radius:2px 2px 0 0;height:70%"></div>
+              <div style="flex:1;background:rgba(200,241,53,0.15);border-radius:2px 2px 0 0;height:40%"></div>
+              <div style="flex:1;background:rgba(200,241,53,0.4);border-radius:2px 2px 0 0;height:90%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HireHub -->
+    <div class="project-card fade-up">
+      <div class="proj-num">Project — 02</div>
+      <h3 class="proj-title">HireHub</h3>
+      <p class="proj-desc">
+        A job portal connecting employers and candidates. Features job posting,
+        application tracking, resume management, and role-based access for recruiters
+        and job seekers.
+      </p>
+      <div class="proj-tags">
+        <span class="proj-tag">ASP.NET MVC</span>
+        <span class="proj-tag">SQL Server</span>
+        <span class="proj-tag">Authentication</span>
+        <span class="proj-tag">Role-Based Access</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/nebusalim01" target="_blank" class="proj-link">↗ GitHub</a>
+      </div>
+    </div>
+
+    <!-- SmartBuy -->
+    <div class="project-card fade-up">
+      <div class="proj-num">Project — 03</div>
+      <h3 class="proj-title">SmartBuy</h3>
+      <p class="proj-desc">
+        A full e-commerce web app with product catalog, shopping cart, order
+        management, admin CRUD operations, and optimized SQL queries for high
+        performance data handling.
+      </p>
+      <div class="proj-tags">
+        <span class="proj-tag">ASP.NET</span>
+        <span class="proj-tag">SQL Server</span>
+        <span class="proj-tag">ADO.NET</span>
+        <span class="proj-tag">Admin Panel</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/nebusalim01" target="_blank" class="proj-link">↗ GitHub</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header fade-up">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="timeline fade-up">
+    <div class="timeline-item">
+      <div class="timeline-meta">Jul 2025 — Jan 2026</div>
+      <div class="timeline-role">ASP.NET Full Stack Intern</div>
+      <div class="timeline-company">Luminar Technolab, Kochi</div>
+      <ul class="timeline-bullets">
+        <li>Developed 3+ full-stack applications using ASP.NET MVC/Core and SQL Server in real-world scenarios.</li>
+        <li>Designed and built RESTful APIs for seamless frontend-backend integration.</li>
+        <li>Implemented data access layers using both ADO.NET and Entity Framework Core.</li>
+        <li>Optimized SQL queries and stored procedures, achieving measurable performance improvements.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-header fade-up">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Certifications</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="cert-grid fade-up">
+    <div class="cert-card">
+      <div class="cert-icon">✦</div>
+      <div class="cert-name">C# (Basics)</div>
+      <div class="cert-issuer">HackerRank</div>
+      <div class="cert-level">Certified</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">✦</div>
+      <div class="cert-name">SQL (Basics & Intermediate)</div>
+      <div class="cert-issuer">HackerRank</div>
+      <div class="cert-level">2 Levels Certified</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">✦</div>
+      <div class="cert-name">Problem Solving (Basic)</div>
+      <div class="cert-issuer">HackerRank</div>
+      <div class="cert-level">Certified</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header fade-up">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Education</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-grid fade-up">
+    <div class="edu-card">
+      <div class="edu-year">2022 — 2025</div>
+      <div class="edu-degree">B.Tech in Information Technology</div>
+      <div class="edu-college">Government Engineering College Idukki</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2019 — 2022</div>
+      <div class="edu-degree">Diploma in Computer Engineering</div>
+      <div class="edu-college">Government Polytechnic College Cherthala</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner fade-up">
+    <h2 class="contact-big">Let's build something <em>great</em> together.</h2>
+    <p class="contact-sub">
+      I'm actively looking for entry-level .NET Developer roles. Whether you have
+      an opportunity, a project, or just want to connect — I'd love to hear from you.
+    </p>
+    <a href="mailto:salimnebu@gmail.com" class="contact-email">
+      salimnebu@gmail.com ↗
+    </a>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/nebusalim" target="_blank" class="social-link">↗ LinkedIn</a>
+      <a href="https://github.com/nebusalim01" target="_blank" class="social-link">↗ GitHub</a>
+      <a href="tel:+919497676828" class="social-link">↗ +91-9497676828</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Nebu Salim</span>. All rights reserved.</p>
+  <p>Built with care · <span>Hosted free on GitHub Pages</span></p>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    ring.style.left = e.clientX + 'px';
+    ring.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(2)'; });
+    el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; });
+  });
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
 </html>
